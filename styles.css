@@ -1,0 +1,591 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Use Poppins as the default font */
+  background-color: white;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding-bottom: 70px; /* Add padding to account for the bottom nav */
+}
+
+/* Menu Icon at Top Left */
+.menu-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 35px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001; /* Ensure it's above other elements */
+}
+
+/* Top Container */
+.top-container {
+  background: linear-gradient(135deg, #3B375A, #6A5B8E); /* Gradient background */
+  color: #fff;
+  padding: 60px 20px 80px 20px; /* Adjusted padding */
+  text-align: left;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top Content */
+.top-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px; /* Limit width for larger screens */
+  margin: 0 auto; /* Center the content */
+}
+
+/* Top Text */
+.top-text {
+  flex: 1; /* Take up remaining space */
+  padding-left: 1px; /* Add padding to the left to create space */
+  max-width: 60%; /* Limit the width of the text to prevent overlap */
+}
+
+.top-text h2 {
+  font-size: 40px; /* Larger font size for emphasis */
+  font-weight: 800; /* Extra bold */
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
+}
+
+.top-text p {
+  font-size: 20px;
+  font-weight: 300; /* Light weight for contrast */
+  color: #f0f0f0;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+}
+
+/* Top Image */
+.top-image {
+  position: absolute;
+  top: 65%;
+  right: 0px;
+  transform: translateY(-50%);
+}
+
+.top-image img {
+  width: 350px;
+  height: auto;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+  .top-text h2 {
+      font-size: 28px; /* Slightly smaller font size for mobile */
+  }
+
+  .top-text p {
+      font-size: 16px; /* Slightly smaller font size for mobile */
+  }
+
+  .top-image {
+      top: 190px; /* Move the image upwards for mobile */
+      right: 1px; /* Move the image rightwards for mobile */
+  }
+
+  .top-image img {
+      width: 250px; /* Smaller image on mobile */
+  }
+}
+
+@media (min-width: 768px) {
+  .top-container {
+      padding: 120px 20px 80px 20px; /* Even taller on larger screens */
+  }
+}
+
+/* Side Menu - Modern and Functional */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -350px; /* Hide the side menu by default */
+  width: 300px;
+  height: 100vh; /* Full height */
+  background: #D5DFEC;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out; /* Smooth transition */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* Side Menu Open State */
+.side-menu.open {
+  left: 0; /* Show the side menu */
+}
+
+/* Menu Options */
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between menu items */
+  flex-grow: 1; /* Allow the menu content to take up remaining space */
+  margin-top: 60px; /* Shift menu options down to avoid overlap with the menu icon */
+}
+
+.menu-item {
+  background: transparent; /* Remove background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between icon and text */
+  color: #3B375A; /* Light text color */
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  font-size: 16px;
+  font-weight: 500; /* Medium weight for readability */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* Remove underline from links */
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  transform: translateX(5px); /* Slight move effect on hover */
+}
+
+.menu-item i {
+  font-size: 25px; /* Icon size */
+  color: #3B375A; /* Pink/red accent color for icons */
+}
+
+.menu-item span {
+  font-weight: 600; /* Semi-bold for emphasis */
+}
+
+/* Divider Between Menu Items and Logout */
+.menu-divider {
+  margin: 15px 0; /* Space above and below the divider */
+  border-top: 1px solid rgba(9, 9, 9, 0.1); /* Subtle divider line */
+}
+
+/* Logout Button */
+.logout-button {
+  background: transparent; /* Remove background */
+  color: #3B375A; /* White text color */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px; /* Match padding with other menu items */
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between icon and text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: 500; /* Medium weight for readability */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  transform: translateX(5px); /* Slight move effect on hover */
+}
+
+/* Overlay for Side Menu */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Scan Products Heading */
+.scan-heading {
+  padding: 10px 20px; /* Reduced padding to move the scan container upwards */
+  text-align: left; /* Align text to the left */
+  margin-bottom: 10px; /* Reduced margin to move the scan container upwards */
+}
+
+.scan-heading h2 {
+  font-size: 28px; /* Larger font size for the heading */
+  font-weight: 600; /* Semi-bold for emphasis */
+  color: #333; /* Dark text color */
+  letter-spacing: -0.5px; /* Slightly tighter letter spacing */
+}
+
+/* Scan Container */
+.scan-container {
+  background: linear-gradient(135deg, #FDB0D1, #FF8CAB); /* Gradient background */
+  border-radius: 25px; /* Rounded corners */
+  padding: 0px; /* Increased padding for more height and width */
+  margin: -50px 10px 20px 10px; /* Match left and right margins with scrollable container */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: calc(100% - 20px); /* Adjust width to account for the equal margins */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+  display: block; /* Make it behave like a block element */
+}
+
+.scan-container:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Scan Content */
+.scan-content {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  width: 100%;
+}
+
+/* Scan Image */
+.scan-image {
+  margin-right: 5px; /* Space between image and text */
+  align-self: flex-end;
+}
+
+.scan-image img {
+  width: 280px; /* Default image size */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: -5px; /* Remove any remaining gap */
+}
+
+/* Scan Text */
+.scan-text {
+  flex: 1; /* Take up remaining space */
+  text-align: left; /* Align text to the left */
+}
+
+.scan-text p {
+  font-size: 25px; /* Larger font size for the text */
+  font-weight: 600; /* Semi-bold for emphasis */
+  color: #2d2d2d; /* Dark gray text color */
+  margin: 0;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Subtle text shadow */
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+  .scan-container {
+      padding: 0px; /* Reduced padding for smaller screens */
+  }
+  .scan-image {
+    align-self: flex-end; /* Move the image downward for mobile */
+}
+
+  .scan-image img {
+      width: 220px; /* Smaller image on mobile */
+      margin-bottom: -7px; /* Remove any remaining gap */
+  }
+
+  .scan-text p {
+      font-size: 20px; /* Smaller font size for mobile */
+  }
+}
+
+/* Modern Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 10px 0; /* Padding for spacing */
+  z-index: 1000; /* Ensure it's above other elements */
+  height: 70px; /* Slightly taller for a modern look */
+  border-top-left-radius: 20px; /* Rounded corners */
+  border-top-right-radius: 20px; /* Rounded corners */
+}
+
+/* Nav Item Styling */
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #a1a4a7; /* Default icon and text color */
+  font-size: 12px; /* Smaller font size for modern look */
+  font-weight: 500; /* Medium weight for readability */
+  padding: 10px 15px; /* Padding for clickable area */
+  border-radius: 15px; /* Rounded corners for items */
+}
+
+/* Active Nav Item - Only change icon color to pink */
+.bottom-nav .nav-item.active i {
+  color: #D175A3 !important; /* Pink color for active icon */
+}
+
+/* Icon Styling */
+.bottom-nav .nav-item i {
+  font-size: 24px; /* Larger icon size */
+  margin-bottom: 4px; /* Space between icon and text */
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+  .bottom-nav {
+    padding: 8px 0; /* Slightly reduced padding for mobile */
+    height: 60px; /* Slightly shorter for mobile */
+  }
+
+  .bottom-nav .nav-item {
+    font-size: 10px; /* Smaller font size for mobile */
+    padding: 8px 12px; /* Smaller padding for mobile */
+  }
+
+  .bottom-nav .nav-item i {
+    font-size: 20px; /* Slightly smaller icons for mobile */
+  }
+}
+/* Quick Actions Heading */
+.quick-actions-heading {
+  padding: 10px 20px; /* Add padding for spacing */
+  text-align: left; /* Align text to the left */
+  margin-bottom: 5px; /* Add margin below the heading */
+}
+
+.quick-actions-heading h2 {
+  font-size: 28px; /* Larger font size for the heading */
+  font-weight: 600; /* Semi-bold for emphasis */
+  color: #333; /* Dark text color */
+  letter-spacing: -0.5px; /* Slightly tighter letter spacing */
+}
+
+.quick-actions-heading p {
+  font-size: 16px; /* Slightly smaller font size for the description */
+  color: #666; /* Gray text color */
+  margin: 0; /* Remove default margin */
+  font-weight: 300; /* Light weight for a modern feel */
+}
+
+/* Scrollable Container */
+.scrollable-container {
+  display: flex;
+  overflow-x: scroll; /* Enable horizontal scrolling */
+  gap: 20px; /* Space between containers */
+  padding: 20px 0; /* No left/right padding */
+  margin: -45px 0 40px 0; /* Add margin-bottom for space below */
+  scroll-snap-type: x mandatory; /* Snap scrolling to containers */
+  scroll-padding: 0 20px; /* Add space on the left and right sides of the scrollable area */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.scrollable-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+/* Left margin for the first container */
+.new-container:first-child {
+  margin-left: 10px; /* Add left margin to the first container */
+}
+
+/* Right margin for the last container */
+.help-container:last-child {
+  margin-right: 10px; /* Add right margin to the last container */
+}
+
+/* Allergy Preferences Container */
+.new-container {
+  flex: 0 0 auto; /* Prevent flex shrinking */
+  background: linear-gradient(135deg, #B6F6F3, #8FE3E0); /* Gradient background */
+  border-radius: 25px; /* Rounded corners */
+  padding: 30px; /* Reduced padding for smaller size */
+  width: 280px; /* Smaller width for the container */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  scroll-snap-align: start; /* Snap to the start of the container */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.new-container:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.new-logo {
+  margin-bottom: 15px; /* Space below the logo */
+}
+
+.new-logo img {
+  width: 60px; /* Smaller logo size */
+  height: 60px; /* Smaller logo size */
+}
+
+.new-content h2 {
+  font-size: 24px; /* Smaller font size for the heading */
+  font-weight: 700; /* Bold for emphasis */
+  color: #2d2d2d; /* Dark text color */
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.new-content p {
+  font-size: 16px; /* Smaller font size for paragraph */
+  color: #555; /* Darker gray text color */
+  margin: 0 0 15px 0; /* Space below the text */
+  font-weight: 400; /* Regular weight for readability */
+  line-height: 1.6; /* Improved line height */
+}
+
+.preferences-button {
+  background-color: #fff; /* White button background */
+  color: #6a11cb; /* Purple accent color */
+  border: none;
+  padding: 10px 20px; /* Smaller padding for the button */
+  font-size: 14px; /* Smaller font size for the button */
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.8); /* Neumorphism shadow */
+  font-weight: 500; /* Medium weight for readability */
+}
+
+.preferences-button:hover {
+  background-color: #6a11cb; /* Purple accent color on hover */
+  color: #fff; /* White text color on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2), -6px -6px 12px rgba(255, 255, 255, 0.9); /* Enhanced shadow on hover */
+}
+
+/* Help Container Adjustments */
+.help-container {
+  flex: 0 0 auto; /* Prevent flex shrinking */
+  scroll-snap-align: start; /* Snap to the start of the container */
+  width: 280px; /* Smaller width for the container */
+  padding: 30px; /* Reduced padding for smaller size */
+  background: linear-gradient(135deg, #F1F2BA, #E8E9A0); /* Gradient background */
+  border-radius: 25px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.help-container:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.help-content h2 {
+  font-size: 24px; /* Smaller font size for the heading */
+  color: #2d2d2d; /* Dark text color */
+  font-weight: 700; /* Bold for emphasis */
+  letter-spacing: -0.5px; /* Slightly tighter letter spacing */
+}
+
+.help-content p {
+  font-size: 16px; /* Smaller font size for paragraph */
+  color: #555; /* Darker gray text color */
+  font-weight: 400; /* Regular weight for readability */
+}
+
+.help-icon {
+  font-size: 40px; /* Smaller icon size */
+  color: #2d2d2d; /* Dark icon color */
+}
+
+.help-button {
+  padding: 10px 20px; /* Smaller padding for the button */
+  font-size: 14px; /* Smaller font size for the button */
+  background-color: #fff; /* White button background */
+  color: #ff6f61; /* Pink/red accent color */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.8); /* Neumorphism shadow */
+  font-weight: 500; /* Medium weight for readability */
+}
+
+.help-button:hover {
+  background-color: #ff6f61; /* Pink/red accent color on hover */
+  color: #fff; /* White text color on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2), -6px -6px 12px rgba(255, 255, 255, 0.9); /* Enhanced shadow on hover */
+}
+
+/* Desktop Layout Adjustments */
+@media (min-width: 601px) {
+  .scan-container, .help-container {
+      max-width: 800px; /* Adjust width for desktop */
+  }
+}
+
+/*Categories Page*/
+/* Categories Heading */
+.categories-heading {
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.categories-heading h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Categories Container */
+.categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Category Card */
+.category-card {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.category-card i {
+  font-size: 40px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.category-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}

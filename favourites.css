@@ -1,0 +1,285 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  position: relative;
+}
+
+  /* Menu Icon at Top Left */
+  .menu-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 35px;
+    color: #000000;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above other elements */
+  }
+  
+/* Side Menu - Modern and Functional */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -350px; /* Hide the side menu by default */
+  width: 300px;
+  height: 100vh; /* Full height */
+  background: #D5DFEC;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out; /* Smooth transition */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* Side Menu Open State */
+.side-menu.open {
+  left: 0; /* Show the side menu */
+}
+
+/* Menu Options */
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between menu items */
+  flex-grow: 1; /* Allow the menu content to take up remaining space */
+  margin-top: 60px; /* Shift menu options down to avoid overlap with the menu icon */
+}
+
+.menu-item {
+  background: transparent; /* Remove background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between icon and text */
+  color: #3B375A; /* Light text color */
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  font-size: 16px;
+  font-weight: 500; /* Medium weight for readability */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* Remove underline from links */
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  transform: translateX(5px); /* Slight move effect on hover */
+}
+
+.menu-item i {
+  font-size: 25px; /* Icon size */
+  color: #3B375A; /* Pink/red accent color for icons */
+}
+
+.menu-item span {
+  font-weight: 600; /* Semi-bold for emphasis */
+}
+
+/* Divider Between Menu Items and Logout */
+.menu-divider {
+  margin: 15px 0; /* Space above and below the divider */
+  border-top: 1px solid rgba(9, 9, 9, 0.1); /* Subtle divider line */
+}
+
+/* Logout Button */
+.logout-button {
+  background: transparent; /* Remove background */
+  color: #3B375A; /* White text color */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px; /* Match padding with other menu items */
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between icon and text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: 500; /* Medium weight for readability */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  transform: translateX(5px); /* Slight move effect on hover */
+}
+
+/* Overlay for Side Menu */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+/* Saved Products Container */
+.saved-products-container {
+  background: #B7DDF5;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+  margin: 80px auto 100px; /* Adjusted for bottom nav */
+}
+
+.saved-products-container h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #3B375A;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+}
+
+.search-bar i {
+  font-size: 20px;
+  color: #3B375A;
+  margin-left: 10px;
+}
+
+/* Saved Products List */
+.saved-products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.product-details {
+  flex: 1;
+  text-align: left;
+}
+
+.product-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #3B375A;
+}
+
+.product-details p {
+  font-size: 14px;
+  color: #666;
+}
+
+.remove-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #3B375A;
+  font-size: 20px;
+}
+
+.remove-button:hover {
+  color: #6a11cb;
+}
+
+/* Modern Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 10px 0; /* Padding for spacing */
+  z-index: 1000; /* Ensure it's above other elements */
+  height: 70px; /* Slightly taller for a modern look */
+  border-top-left-radius: 20px; /* Rounded corners */
+  border-top-right-radius: 20px; /* Rounded corners */
+}
+
+/* Nav Item Styling */
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #a1a4a7; /* Default icon and text color */
+  font-size: 12px; /* Smaller font size for modern look */
+  font-weight: 500; /* Medium weight for readability */
+  padding: 10px 15px; /* Padding for clickable area */
+  border-radius: 15px; /* Rounded corners for items */
+}
+
+/* Active Nav Item - Only change icon color to pink */
+.bottom-nav .nav-item.active i {
+  color: #D175A3 !important; /* Pink color for active icon */
+}
+
+/* Icon Styling */
+.bottom-nav .nav-item i {
+  font-size: 24px; /* Larger icon size */
+  margin-bottom: 4px; /* Space between icon and text */
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+  .bottom-nav {
+    padding: 8px 0; /* Slightly reduced padding for mobile */
+    height: 60px; /* Slightly shorter for mobile */
+  }
+
+  .bottom-nav .nav-item {
+    font-size: 10px; /* Smaller font size for mobile */
+    padding: 8px 12px; /* Smaller padding for mobile */
+  }
+
+  .bottom-nav .nav-item i {
+    font-size: 20px; /* Slightly smaller icons for mobile */
+  }
+}

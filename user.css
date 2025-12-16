@@ -1,0 +1,443 @@
+/* General Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  color: #333;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+  /* Menu Icon at Top Left */
+  .menu-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 35px;
+    color: #000000;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above other elements */
+  }
+  
+/* Side Menu - Modern and Functional */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -350px; /* Hide the side menu by default */
+  width: 300px;
+  height: 100vh; /* Full height */
+  background: #D5DFEC;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out; /* Smooth transition */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* Side Menu Open State */
+.side-menu.open {
+  left: 0; /* Show the side menu */
+}
+
+/* Menu Options */
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between menu items */
+  flex-grow: 1; /* Allow the menu content to take up remaining space */
+  margin-top: 60px; /* Shift menu options down to avoid overlap with the menu icon */
+}
+
+.menu-item {
+  background: transparent; /* Remove background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between icon and text */
+  color: #3B375A; /* Light text color */
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  font-size: 16px;
+  font-weight: 500; /* Medium weight for readability */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* Remove underline from links */
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  transform: translateX(5px); /* Slight move effect on hover */
+}
+
+.menu-item i {
+  font-size: 25px; /* Icon size */
+  color: #3B375A; /* Pink/red accent color for icons */
+}
+
+.menu-item span {
+  font-weight: 600; /* Semi-bold for emphasis */
+}
+
+/* Divider Between Menu Items and Logout */
+.menu-divider {
+  margin: 15px 0; /* Space above and below the divider */
+  border-top: 1px solid rgba(9, 9, 9, 0.1); /* Subtle divider line */
+}
+
+/* Logout Button */
+.logout-button {
+  background: transparent; /* Remove background */
+  color: #3B375A; /* White text color */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px; /* Match padding with other menu items */
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between icon and text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: 500; /* Medium weight for readability */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  transform: translateX(5px); /* Slight move effect on hover */
+}
+
+/* Overlay for Side Menu */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-left: auto;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #6a11cb;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Dark Mode Toggle Icon */
+#dark-mode-toggle i {
+  font-size: 24px;
+  color: #3B375A;
+  margin-right: 10px;
+}
+
+/* Dark Mode Styles - Only applied when body has dark-mode class */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .profile-container,
+body.dark-mode .bottom-nav,
+body.dark-mode .side-menu {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.dark-mode .profile-option,
+body.dark-mode .nav-item {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+body.dark-mode .input-group input {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border-color: #444;
+}
+
+/* Profile Container Styles */
+.profile-container {
+  background: rgba(249, 208, 200, 0.8);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  margin: 80px auto 80px;
+  position: relative;
+  overflow: visible;
+  padding-bottom: 80px;
+}
+
+.profile-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #3B375A;
+}
+
+.profile-header p {
+  font-size: 14px;
+  color: #666;
+}
+
+.profile-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-option {
+  background: rgba(255, 255, 255, 0.571);
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-option:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-option i {
+  font-size: 24px;
+  color: #3B375A;
+}
+
+.profile-option span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Edit Profile Form */
+.edit-profile-form {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-form.active {
+  display: flex; /* Show when active */
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.input-group i {
+  font-size: 20px;
+  color: #3B375A;
+}
+
+.input-group input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+}
+
+.save-button {
+  background: #6a11cb;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(106, 17, 203, 0.3);
+}
+
+/* Change Password Form */
+.change-password-form {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.change-password-form.active {
+  display: flex; /* Show when active */
+}
+
+/* Custom Pop-up Messages */
+.custom-popup {
+  display: none; /* Hidden by default */
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  background-color: #6a11cb;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.custom-popup.active {
+  display: block; /* Show when active */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Modern Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 10px 0; /* Padding for spacing */
+  z-index: 1000; /* Ensure it's above other elements */
+  height: 70px; /* Slightly taller for a modern look */
+  border-top-left-radius: 20px; /* Rounded corners */
+  border-top-right-radius: 20px; /* Rounded corners */
+}
+
+/* Nav Item Styling */
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #a1a4a7; /* Default icon and text color */
+  font-size: 12px; /* Smaller font size for modern look */
+  font-weight: 500; /* Medium weight for readability */
+  padding: 10px 15px; /* Padding for clickable area */
+  border-radius: 15px; /* Rounded corners for items */
+}
+
+/* Active Nav Item - Only change icon color to pink */
+.bottom-nav .nav-item.active i {
+  color: #D175A3 !important; /* Pink color for active icon */
+}
+
+/* Icon Styling */
+.bottom-nav .nav-item i {
+  font-size: 24px; /* Larger icon size */
+  margin-bottom: 4px; /* Space between icon and text */
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+  .bottom-nav {
+    padding: 8px 0; /* Slightly reduced padding for mobile */
+    height: 60px; /* Slightly shorter for mobile */
+  }
+
+  .bottom-nav .nav-item {
+    font-size: 10px; /* Smaller font size for mobile */
+    padding: 8px 12px; /* Smaller padding for mobile */
+  }
+
+  .bottom-nav .nav-item i {
+    font-size: 20px; /* Slightly smaller icons for mobile */
+  }
+}

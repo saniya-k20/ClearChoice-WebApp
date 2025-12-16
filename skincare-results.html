@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skincare Ingredient Analysis Results</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 100px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      color: #FF6B6B;
+      font-size: 28px;
+    }
+    .scanned-image {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .results-card {
+      background-color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .ingredient-list {
+      text-align: left;
+      margin-top: 10px;
+    }
+    .ingredient-item {
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+    }
+    .ingredient-icon {
+      margin-right: 15px;
+      font-size: 20px;
+    }
+    .good {
+      background-color: #d4edda;
+      color: #155724;
+      border-left: 5px solid #28a745;
+    }
+    .moderate {
+      background-color: #fff3cd;
+      color: #856404;
+      border-left: 5px solid #ffc107;
+    }
+    .bad {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-left: 5px solid #dc3545;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .back-btn {
+      background-color: #FF6B6B;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      flex: 1;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .save-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      flex: 1;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rating-summary {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .rating-box {
+      padding: 15px;
+      border-radius: 10px;
+      width: 30%;
+    }
+    .bad-summary {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .moderate-summary {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .good-summary {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .rating-count {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    /* Modern Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 10px 0; /* Padding for spacing */
+  z-index: 1000; /* Ensure it's above other elements */
+  height: 70px; /* Slightly taller for a modern look */
+  border-top-left-radius: 20px; /* Rounded corners */
+  border-top-right-radius: 20px; /* Rounded corners */
+}
+
+/* Nav Item Styling */
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #a1a4a7; /* Default icon and text color */
+  font-size: 12px; /* Smaller font size for modern look */
+  font-weight: 500; /* Medium weight for readability */
+  padding: 10px 15px; /* Padding for clickable area */
+  border-radius: 15px; /* Rounded corners for items */
+}
+
+/* Active Nav Item - Only change icon color to pink */
+.bottom-nav .nav-item.active i {
+  color: #D175A3 !important; /* Pink color for active icon */
+}
+
+/* Icon Styling */
+.bottom-nav .nav-item i {
+  font-size: 24px; /* Larger icon size */
+  margin-bottom: 4px; /* Space between icon and text */
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+  .bottom-nav {
+    padding: 8px 0; /* Slightly reduced padding for mobile */
+    height: 60px; /* Slightly shorter for mobile */
+  }
+
+  .bottom-nav .nav-item {
+    font-size: 10px; /* Smaller font size for mobile */
+    padding: 8px 12px; /* Smaller padding for mobile */
+  }
+
+  .bottom-nav .nav-item i {
+    font-size: 20px; /* Slightly smaller icons for mobile */
+  }
+}
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 25px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .modal-title {
+      margin-top: 0;
+      color: #FF6B6B;
+    }
+    .modal-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      margin: 15px 0;
+    }
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .modal-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .modal-cancel {
+      background-color: #f1f1f1;
+      color: #333;
+    }
+    .modal-confirm {
+      background-color: #4CAF50;
+      color: white;
+    }
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Skincare Ingredient Analysis</h1>
+    </div>
+    
+    <div id="image-display" style="display: none;">
+      <img id="scanned-image" class="scanned-image" src="" alt="Scanned Skincare Label">
+    </div>
+    
+    <div class="rating-summary">
+      <div class="rating-box bad-summary">
+        <div>🚫 Bad</div>
+        <div class="rating-count" id="bad-count">3</div>
+        <div>Ingredients</div>
+      </div>
+      <div class="rating-box moderate-summary">
+        <div>⚠️ Moderate</div>
+        <div class="rating-count" id="moderate-count">2</div>
+        <div>Ingredients</div>
+      </div>
+      <div class="rating-box good-summary">
+        <div>✅ Good</div>
+        <div class="rating-count" id="good-count">4</div>
+        <div>Ingredients</div>
+      </div>
+    </div>
+    
+    <div class="results-card">
+      <h2>Ingredient Analysis</h2>
+      <div class="ingredient-list" id="ingredient-list">
+        <!-- Bad Ingredients -->
+        <div class="ingredient-item bad">
+          <div class="ingredient-icon">🚫</div>
+          <div>
+            <strong>Parabens</strong><br>
+            Preservatives linked to hormone disruption and potential breast cancer risk.
+          </div>
+        </div>
+        <div class="ingredient-item bad">
+          <div class="ingredient-icon">🚫</div>
+          <div>
+            <strong>Phthalates</strong><br>
+            Plasticizers that may disrupt the endocrine system and cause reproductive issues.
+          </div>
+        </div>
+        <div class="ingredient-item bad">
+          <div class="ingredient-icon">🚫</div>
+          <div>
+            <strong>Formaldehyde Releasers</strong><br>
+            Can release formaldehyde, a known carcinogen, over time.
+          </div>
+        </div>
+        
+        <!-- Moderate Ingredients -->
+        <div class="ingredient-item moderate">
+          <div class="ingredient-icon">⚠️</div>
+          <div>
+            <strong>Fragrance/Parfum</strong><br>
+            Can cause skin irritation and may contain hidden harmful chemicals.
+          </div>
+        </div>
+        <div class="ingredient-item moderate">
+          <div class="ingredient-icon">⚠️</div>
+          <div>
+            <strong>Sodium Lauryl Sulfate (SLS)</strong><br>
+            Can be drying and irritating to skin, especially for sensitive types.
+          </div>
+        </div>
+        
+        <!-- Good Ingredients -->
+        <div class="ingredient-item good">
+          <div class="ingredient-icon">✅</div>
+          <div>
+            <strong>Hyaluronic Acid</strong><br>
+            Excellent hydrator that helps skin retain moisture.
+          </div>
+        </div>
+        <div class="ingredient-item good">
+          <div class="ingredient-icon">✅</div>
+          <div>
+            <strong>Niacinamide</strong><br>
+            Reduces inflammation, minimizes pores, and improves skin texture.
+          </div>
+        </div>
+        <div class="ingredient-item good">
+          <div class="ingredient-icon">✅</div>
+          <div>
+            <strong>Ceramides</strong><br>
+            Help restore and maintain the skin's natural barrier.
+          </div>
+        </div>
+        <div class="ingredient-item good">
+          <div class="ingredient-icon">✅</div>
+          <div>
+            <strong>Vitamin E</strong><br>
+            Powerful antioxidant that protects skin from free radical damage.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="action-buttons">
+      <button class="back-btn" onclick="window.location.href='skincare-category.html'">
+        <i class="fas fa-arrow-left"></i> Back to Scanner
+      </button>
+      <button class="save-btn" id="save-btn">
+        <i class="fas fa-heart"></i> Save This Info
+      </button>
+    </div>
+  </div>
+
+  <!-- Name Input Modal -->
+  <div class="modal-overlay" id="name-modal">
+    <div class="modal-content">
+      <h3 class="modal-title">Name Your Analysis</h3>
+      <input type="text" class="modal-input" id="analysis-name" placeholder="Enter a name for this analysis">
+      <div class="modal-buttons">
+        <button class="modal-btn modal-cancel" id="cancel-save">Cancel</button>
+        <button class="modal-btn modal-confirm" id="confirm-save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Saved to favorites!</div>
+
+  <!-- Bottom Navigation -->
+  <footer class="bottom-nav">
+    <a href="favourites.html" class="nav-item">
+      <i class="fas fa-heart"></i>
+      <span>Favorites</span>
+    </a>
+    <a href="index.php" class="nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="user-profile.html" class="nav-item">
+      <i class="fas fa-user"></i>
+      <span>Profile</span>
+    </a>
+  </footer>
+
+  <script>
+    // Display the scanned image if available
+    document.addEventListener('DOMContentLoaded', function() {
+      const scannedImage = localStorage.getItem('scannedImage');
+      const imageDisplay = document.getElementById('image-display');
+      const imageElement = document.getElementById('scanned-image');
+      
+      if (scannedImage) {
+        imageElement.src = scannedImage;
+        imageDisplay.style.display = 'block';
+      }
+      
+      // Clear the stored image
+      localStorage.removeItem('scannedImage');
+      
+      // Set up save button
+      const saveBtn = document.getElementById('save-btn');
+      const nameModal = document.getElementById('name-modal');
+      const cancelBtn = document.getElementById('cancel-save');
+      const confirmBtn = document.getElementById('confirm-save');
+      const analysisNameInput = document.getElementById('analysis-name');
+      
+      saveBtn.addEventListener('click', function() {
+        nameModal.classList.add('active');
+        analysisNameInput.focus();
+      });
+      
+      cancelBtn.addEventListener('click', function() {
+        nameModal.classList.remove('active');
+        analysisNameInput.value = '';
+      });
+      
+      confirmBtn.addEventListener('click', saveToFavorites);
+      
+      // Allow pressing Enter to confirm
+      analysisNameInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          saveToFavorites();
+        }
+      });
+    });
+
+    function saveToFavorites() {
+      const nameModal = document.getElementById('name-modal');
+      const analysisName = document.getElementById('analysis-name').value.trim();
+      
+      if (!analysisName) {
+        alert("Please enter a name for your analysis");
+        return;
+      }
+      
+      // Get all the analysis data from the page
+      const analysisData = {
+        name: analysisName,
+        date: new Date().toLocaleDateString(),
+        category: 'skincare',
+        badCount: document.getElementById('bad-count').textContent,
+        moderateCount: document.getElementById('moderate-count').textContent,
+        goodCount: document.getElementById('good-count').textContent,
+        ingredients: []
+      };
+      
+      // Get all ingredient items
+      const ingredientItems = document.querySelectorAll('.ingredient-item');
+      ingredientItems.forEach(item => {
+        const icon = item.querySelector('.ingredient-icon').textContent;
+        const name = item.querySelector('strong').textContent;
+        const description = item.querySelector('div').lastChild.textContent.trim();
+        const rating = item.classList.contains('bad') ? 'bad' : 
+                      item.classList.contains('moderate') ? 'moderate' : 'good';
+        
+        analysisData.ingredients.push({
+          icon,
+          name,
+          description,
+          rating
+        });
+      });
+      
+      // Get the saved items from localStorage or create empty array
+      let savedItems = JSON.parse(localStorage.getItem('savedAnalyses')) || [];
+      
+      // Add the new analysis
+      savedItems.push(analysisData);
+      
+      // Save back to localStorage
+      localStorage.setItem('savedAnalyses', JSON.stringify(savedItems));
+      
+      // Hide modal and clear input
+      nameModal.classList.remove('active');
+      document.getElementById('analysis-name').value = '';
+      
+      // Show toast notification
+      const toast = document.getElementById('toast');
+      toast.textContent = `"${analysisName}" saved to favorites!`;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

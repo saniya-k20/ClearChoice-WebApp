@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Categories</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="categories.css">
+</head>
+<body>
+  <!-- Side Menu Icon at Top Left -->
+  <div class="menu-icon" id="top-menu-icon">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Side Menu -->
+  <div class="side-menu">
+    <!-- Menu Options -->
+    <div class="menu-content">
+      <a href="index.php" class="menu-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="categories.html" class="menu-item">
+        <i class="fas fa-list"></i>
+        <span>Categories</span>
+      </a>
+      <a href="user-profile.html" class="menu-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+      <a href="settings.html" class="menu-item">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+      </a>
+      <a href="user-guide.html" class="menu-item">
+        <i class="fas fa-book"></i>
+        <span>User Guide</span>
+      </a>
+      <a href="about-us.html" class="menu-item">
+        <i class="fas fa-info-circle"></i>
+        <span>About Us</span>
+      </a>
+      <a href="contact-us.html" class="menu-item">
+        <i class="fas fa-phone"></i>
+        <span>Contact Us</span>
+      </a>
+
+      <!-- Divider -->
+      <div class="menu-divider"></div>
+
+      <!-- Logout Button -->
+      <a href="logout.php" class="menu-item logout-button">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Categories Heading -->
+  <div class="categories-heading">
+    <h2>Choose your category</h2>
+  </div>
+
+  <!-- Categories Container with reversed overlapping cards -->
+  <div class="categories-container">
+    <!-- Food Category -->
+    <a href="food-category.html" class="category-card" style="background-color: #FFD1DC;">
+      <i class="fas fa-utensils"></i>
+      <h3>Food</h3>
+    </a>
+
+    <!-- Skincare Category -->
+    <a href="skincare-category.html" class="category-card" style="background-color: #FFCCBC;">
+      <i class="fas fa-spa"></i>
+      <h3>Skincare</h3>
+    </a>
+
+    <!-- Haircare Category -->
+    <a href="haircare-category.html" class="category-card" style="background-color: #D1C4E9;">
+      <i class="fas fa-cut"></i>
+      <h3>Haircare</h3>
+    </a>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="bottom-nav">
+    <a href="favourites.html" class="nav-item">
+      <i class="fas fa-heart"></i>
+      <span>Favorites</span>
+    </a>
+    <a href="index.php" class="nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="user-profile.html" class="nav-item">
+      <i class="fas fa-user"></i>
+      <span>Profile</span>
+    </a>
+  </footer>
+
+  <script>
+    // Toggle side menu
+    document.getElementById('top-menu-icon').addEventListener('click', function() {
+      document.querySelector('.side-menu').classList.toggle('open');
+      document.querySelector('.overlay').style.display = 'block';
+    });
+    
+    // Close menu when clicking overlay
+    document.querySelector('.overlay').addEventListener('click', function() {
+      document.querySelector('.side-menu').classList.remove('open');
+      this.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
