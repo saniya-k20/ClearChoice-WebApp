@@ -21,10 +21,10 @@ ClearChoice is a web-based ingredient checking application that helps users make
 ![Home Page](screenshots/home.png)
 
 ### Categiroes Page
-![Result Page](screenshots/categories.png)
+![Categories Page](screenshots/categories.png)
 
 ### Upload Image Page
-![Profile Page](screenshots/uplaod.png)
+![Upload Page](screenshots/upload.png)
 
 ## How to Run the Project
 1. Download or clone the repository
